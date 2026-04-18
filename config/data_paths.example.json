@@ -1,0 +1,9 @@
+{
+  "scripps_rom": {
+    "raw_dir": "data/raw/scripps_rom",
+    "raw_seismograms": "data/raw/scripps_rom/seismos_16_receivers.npy",
+    "rom_notebook": "data/raw/scripps_rom/seismogram_rom_demo.ipynb",
+    "processed_dir": "data/processed/scripps_rom",
+    "scenarios_dir": "data/scenarios"
+  }
+}
