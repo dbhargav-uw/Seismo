@@ -1,4 +1,4 @@
-# Seismic Viability Claude Code Starter v2
+# Seismo - Seismic Viability
 
 This updated starter package reflects the recommended data layout for the Scripps reduced-order seismogram dataset.
 
