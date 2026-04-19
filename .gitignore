@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.python-version
+
+# Node / Vite
+node_modules/
+dist/
+build/
+.vite/
+.tsbuild/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+app/backend/.env
+app/frontend/.env
+
+# Playwright / MCP session artifacts
+.playwright-mcp/
+
+# Dev screenshots captured during visual gates (any *.png at repo root)
+/*.png
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Derived data — regenerable from data/raw/ via scripts/
+data/processed/**
+!data/processed/.gitkeep
+!data/processed/**/.gitkeep
+
+# Keep data/scenarios/*.json (demo-critical, tiny)
