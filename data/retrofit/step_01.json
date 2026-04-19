@@ -1,0 +1,26 @@
+{
+  "step": 1,
+  "diagnosis": {
+    "critical_failure_mode": "mid-height drift concentration with likely globally flexible lateral response; the drift profile peaks at story 3 rather than the base, so a classic first-story soft-story mechanism is not indicated from the supplied data",
+    "highest_stress_element": "not available — no element IDs, stress indicators, or hinge data supplied; only global linear-response outputs are available",
+    "worst_drift_floor": 3,
+    "current_fragility_risk": 0.22,
+    "evidence_basis": "heuristic"
+  },
+  "selected_action": {
+    "action_type": "add_damper",
+    "parameters": {
+      "location": "story_3",
+      "damper_type": "fluid_viscous"
+    },
+    "estimated_cost_usd": 22000.0,
+    "estimated_risk_reduction": 0.03,
+    "reasoning": "Story 3 has the highest drift demand, and a fluid viscous damper is a conservative first retrofit probe because it can reduce response demand with less risk of creating a new stiffness concentration than a highly localized stiffness-only intervention. It is also comparatively low-disruption and lower-cost than more invasive system changes, making it a reasonable first action before considering broader wall, brace, or isolation strategies."
+  },
+  "expected_state_after": {
+    "projected_fragility_risk": 0.19,
+    "projected_max_drift": 0.008,
+    "budget_remaining_usd": 128000.0
+  },
+  "caveat": "This recommendation is based only on global linear-response quantities, including story-drift profile and period-scale behavior. No element-level stresses, hinge states, or detailed nonlinear collapse indicators were supplied, so the failure-mode diagnosis and expected benefit remain heuristic. The projected drift and fragility improvements are order-of-magnitude planning estimates only and must be checked by run_opensees() followed by compute_fragility() before any further structural recommendation. The supplied collapse_probability is treated as a fragility-model estimate rather than a direct simulation prediction. Cost is planning-level only, and damper anchorage/load-path effects on adjacent framing require engineer verification."
+}

@@ -1,0 +1,85 @@
+{
+  "version": "retrofit_policy_v1.0",
+  "honest_framing": "retrofit_policy_v1 is a design-search policy trained against the Seismo linear-elastic OpenSees simulator with HAZUS-fragility-derived labels. v1 uses documented parametric delta rules — not a re-simulation of the modified building — to update the response vector after each retrofit action. It recommends one action per step in a bounded episode; it is not an autonomous engineer and does not simulate collapse. All output must be reviewed by a licensed engineer before implementation.",
+
+  "building_limits": {
+    "min_stories": 3,
+    "max_stories": 5,
+    "systems_supported": ["concrete_moment_frame"]
+  },
+
+  "episode": {
+    "max_steps": 10,
+    "target_fragility": 0.10,
+    "min_initial_fragility_for_bias": 0.12,
+    "max_initial_fragility_for_bias": 0.45
+  },
+
+  "action_ids": {
+    "0": {"type": "do_nothing"},
+    "1": {"type": "add_damper", "story": 1},
+    "2": {"type": "add_damper", "story": 2},
+    "3": {"type": "add_damper", "story": 3},
+    "4": {"type": "add_damper", "story": 4},
+    "5": {"type": "add_damper", "story": 5},
+    "6": {"type": "add_brace", "story": 1},
+    "7": {"type": "add_brace", "story": 2},
+    "8": {"type": "add_brace", "story": 3},
+    "9": {"type": "add_brace", "story": 4},
+    "10": {"type": "add_brace", "story": 5},
+    "11": {"type": "upgrade_column", "story": 1},
+    "12": {"type": "upgrade_column", "story": 2},
+    "13": {"type": "upgrade_column", "story": 3},
+    "14": {"type": "upgrade_column", "story": 4},
+    "15": {"type": "upgrade_column", "story": 5}
+  },
+
+  "cost_usd": {
+    "do_nothing": 0.0,
+    "add_damper": 22000.0,
+    "add_brace": 18000.0,
+    "upgrade_column": 28000.0,
+    "_source": "order-of-magnitude planning values; not contractor estimates"
+  },
+
+  "delta_rules": {
+    "_description": "Documented parametric response updates applied after each retrofit action. These are engineering-estimate placeholders, not derived from re-simulating the modified building. A v2 calibration pass should compare these deltas against actual OpenSees re-runs of retrofitted models.",
+    "add_damper": {
+      "drift_reduction_at_target_story": 0.25,
+      "drift_reduction_at_adjacent_stories": 0.08,
+      "t1_change_fraction": 0.0,
+      "_source": "fluid viscous damper typical performance; FEMA 356 Table 9-1 range 15-30% per damped level"
+    },
+    "add_brace": {
+      "drift_reduction_at_target_story": 0.35,
+      "drift_reduction_at_adjacent_stories": 0.05,
+      "t1_change_fraction": -0.03,
+      "_source": "concentric X-brace adding lateral stiffness; typical retrofit response in ASCE 41 Commentary"
+    },
+    "upgrade_column": {
+      "drift_reduction_at_target_story": 0.30,
+      "drift_reduction_at_adjacent_stories": 0.03,
+      "t1_change_fraction": -0.02,
+      "_source": "~20% section bump on all columns of a story; conservative estimate from stiffness scaling"
+    }
+  },
+
+  "fragility": {
+    "damage_state": "LS",
+    "concrete_moment_frame": {
+      "theta": 0.02,
+      "beta": 0.60
+    },
+    "_source": "HAZUS MR1 Table 5.9b, Life Safety damage state for C1M (concrete moment frame, mid-rise)"
+  },
+
+  "reward": {
+    "A_fragility_improvement": 20.0,
+    "B_cost_fraction": 1.0,
+    "HARD_infeasible": 10.0,
+    "terminal_success_bonus": 50.0,
+    "terminal_failure_penalty": 10.0,
+    "do_nothing_repeat_penalty": 0.1,
+    "do_nothing_repeat_threshold": 1
+  }
+}

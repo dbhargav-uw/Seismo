@@ -1,0 +1,23 @@
+{
+  "synthetic_for_demo": true,
+  "scenarios": [
+    {
+      "scenario_id": "demo_low",
+      "label": "Light shaking",
+      "description": "5th-percentile mean PGV across receivers. (source_id=26)",
+      "source_id": 26
+    },
+    {
+      "scenario_id": "demo_mid",
+      "label": "Moderate shaking",
+      "description": "Median mean-PGV scenario. (source_id=289)",
+      "source_id": 289
+    },
+    {
+      "scenario_id": "demo_high",
+      "label": "Strong shaking",
+      "description": "95th-percentile mean PGV across receivers. (source_id=373)",
+      "source_id": 373
+    }
+  ]
+}
